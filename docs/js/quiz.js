@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         } else if (collectionId) { 
             // For standalone collection quizzes (loaded on-demand)
             // 1. Fetch the index to find the quiz path.
-            const quizIndexResp = await fetch('quizzes/index.json');
+            const quizIndexResp = await fetch('Quizzes/index.json');
             if (!quizIndexResp.ok) throw new Error('Failed to load quiz index.');
             const quizzesIndex = await quizIndexResp.json();
             const quizInfo = quizzesIndex.find(q => q.id === collectionId);
