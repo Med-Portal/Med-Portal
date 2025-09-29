@@ -3,420 +3,490 @@
     "id": "nub_year5_emeregncy_medicine_revision_collection_quiz_emergency_medicine",
     "title": "Emergency Medicine",
     "path": "quizzes/nub_year5_emeregncy_medicine_revision_collection_quiz_emergency_medicine.json",
-    "questionsCount": 37
+    "questionsCount": 37,
+    "showAt": "/nub/year5/emeregncy/medicine/revision"
   },
   {
     "id": "nub_year5_emeregncy_surgery_revision_collection_quiz_emergency_surgery",
     "title": "Emergency Surgery",
     "path": "quizzes/nub_year5_emeregncy_surgery_revision_collection_quiz_emergency_surgery.json",
-    "questionsCount": 51
+    "questionsCount": 51,
+    "showAt": "/nub/year5/emeregncy/surgery/revision"
   },
   {
     "id": "nub_year5_family_medicine_revision_collection_quiz_family_medicine_revision",
     "title": "Family Medicine Revision",
     "path": "quizzes/nub_year5_family_medicine_revision_collection_quiz_family_medicine_revision.json",
-    "questionsCount": 52
+    "questionsCount": 52,
+    "showAt": "/nub/year5/family-medicine/revision"
   },
   {
     "id": "nub_year5_gynecology_basic_operative_gynecology_collection_quiz_basic_operative_gynecology_nadine",
     "title": "Basic & Operative Gynecology - Dr. Nadine",
     "path": "quizzes/nub_year5_gynecology_basic_operative_gynecology_collection_quiz_basic_operative_gynecology_nadine.json",
-    "questionsCount": 110
+    "questionsCount": 110,
+    "showAt": "/nub/year5/gynecology/basic-operative-gynecology"
   },
   {
     "id": "nub_year5_gynecology_diagnostic_procedures_and_operations_in_gynecology_collection_quiz_diagnostic_procedures_and_operations_in_gynecology",
     "title": "Diagnostic Procedures and Operations in Gynecology",
     "path": "quizzes/nub_year5_gynecology_diagnostic_procedures_and_operations_in_gynecology_collection_quiz_diagnostic_procedures_and_operations_in_gynecology.json",
-    "questionsCount": 7
+    "questionsCount": 7,
+    "showAt": "/nub/year5/gynecology/diagnostic-procedures-and-operations-in-gynecology"
   },
   {
     "id": "nub_year5_gynecology_endocrinology_collection_quiz_endocrinology_nadine",
     "title": "Endocrinology - Dr. Nadine",
     "path": "quizzes/nub_year5_gynecology_endocrinology_collection_quiz_endocrinology_nadine.json",
-    "questionsCount": 160
+    "questionsCount": 160,
+    "showAt": "/nub/year5/gynecology/endocrinology"
   },
   {
     "id": "nub_year5_gynecology_endocrinology_collection_quiz_gynecologic_endocrinology",
     "title": "GYNECOLOGIC ENDOCRINOLOGY",
     "path": "quizzes/nub_year5_gynecology_endocrinology_collection_quiz_gynecologic_endocrinology.json",
-    "questionsCount": 117
+    "questionsCount": 117,
+    "showAt": "/nub/year5/gynecology/endocrinology"
   },
   {
     "id": "nub_year5_gynecology_female_genital_infections_collection_quiz_female_genital_infections",
     "title": "Female Genital Infections",
     "path": "quizzes/nub_year5_gynecology_female_genital_infections_collection_quiz_female_genital_infections.json",
-    "questionsCount": 58
+    "questionsCount": 58,
+    "showAt": "/nub/year5/gynecology/female-genital-infections"
   },
   {
     "id": "nub_year5_gynecology_female_genital_infections_collection_quiz_gynecological_infections_nadine",
     "title": "Gynecological Infections - Dr. Nadine",
     "path": "quizzes/nub_year5_gynecology_female_genital_infections_collection_quiz_gynecological_infections_nadine.json",
-    "questionsCount": 120
+    "questionsCount": 120,
+    "showAt": "/nub/year5/gynecology/female-genital-infections"
   },
   {
     "id": "nub_year5_gynecology_general_gynecology_collection_quiz_general_gynecology_nadine",
     "title": "General Gynecology - Dr. Nadine",
     "path": "quizzes/nub_year5_gynecology_general_gynecology_collection_quiz_general_gynecology_nadine.json",
-    "questionsCount": 160
+    "questionsCount": 160,
+    "showAt": "/nub/year5/gynecology/general-gynecology"
   },
   {
     "id": "nub_year5_gynecology_general_gynecology_collection_quiz_general_gynecology",
     "title": "Kasr Al Ainy",
     "path": "quizzes/nub_year5_gynecology_general_gynecology_collection_quiz_general_gynecology.json",
-    "questionsCount": 123
+    "questionsCount": 123,
+    "showAt": "/nub/year5/gynecology/general-gynecology"
   },
   {
     "id": "nub_year5_gynecology_oncology_collection_quiz_gynecologic_oncology",
     "title": "Gynecologic Oncology",
     "path": "quizzes/nub_year5_gynecology_oncology_collection_quiz_gynecologic_oncology.json",
-    "questionsCount": 137
+    "questionsCount": 137,
+    "showAt": "/nub/year5/gynecology/oncology"
   },
   {
     "id": "nub_year5_gynecology_oncology_collection_quiz_oncology_nadine",
     "title": "Oncology - Dr. Nadine",
     "path": "quizzes/nub_year5_gynecology_oncology_collection_quiz_oncology_nadine.json",
-    "questionsCount": 160
+    "questionsCount": 160,
+    "showAt": "/nub/year5/gynecology/oncology"
   },
   {
     "id": "nub_year5_gynecology_revision_collection_quiz_rounds_questions",
     "title": "Rounds",
     "path": "quizzes/nub_year5_gynecology_revision_collection_quiz_rounds_questions.json",
-    "questionsCount": 37
+    "questionsCount": 37,
+    "showAt": "/nub/year5/gynecology/revision"
   },
   {
     "id": "nub_year5_gynecology_revision_collection_quiz_vip",
     "title": "VIP",
     "path": "quizzes/nub_year5_gynecology_revision_collection_quiz_vip.json",
-    "questionsCount": 179
+    "questionsCount": 179,
+    "showAt": "/nub/year5/gynecology/revision"
   },
   {
     "id": "nub_year5_obstetrics_3rd_stage_complications_collection_quiz_3rd_stage_complications",
     "title": "3rd Stage Complications",
     "path": "quizzes/nub_year5_obstetrics_3rd_stage_complications_collection_quiz_3rd_stage_complications.json",
-    "questionsCount": 10
+    "questionsCount": 10,
+    "showAt": "/nub/year5/obstetrics/3rd-stage-complications"
   },
   {
     "id": "nub_year5_obstetrics_basic_obstetrics_collection_quiz_basic_obstetrics",
     "title": "BASIC OBSTETRICS",
     "path": "quizzes/nub_year5_obstetrics_basic_obstetrics_collection_quiz_basic_obstetrics.json",
-    "questionsCount": 59
+    "questionsCount": 59,
+    "showAt": "/nub/year5/obstetrics/basic-obstetrics"
   },
   {
     "id": "nub_year5_obstetrics_bleeding_in_late_pregnancy_collection_quiz_bleeding_in_late_pregnancy",
     "title": "BLEEDING IN LATE PREGNANCY",
     "path": "quizzes/nub_year5_obstetrics_bleeding_in_late_pregnancy_collection_quiz_bleeding_in_late_pregnancy.json",
-    "questionsCount": 25
+    "questionsCount": 25,
+    "showAt": "/nub/year5/obstetrics/bleeding-in-late-pregnancy"
   },
   {
     "id": "nub_year5_obstetrics_early_obstetric_complications_collection_quiz_early_obstetric_complications",
     "title": "Early Obstetric Complications",
     "path": "quizzes/nub_year5_obstetrics_early_obstetric_complications_collection_quiz_early_obstetric_complications.json",
-    "questionsCount": 73
+    "questionsCount": 73,
+    "showAt": "/nub/year5/obstetrics/early-obstetric-complications"
   },
   {
     "id": "nub_year5_obstetrics_fetus_and_neonate_collection_quiz_fetus_and_neonate",
     "title": "Fetus and Neonate",
     "path": "quizzes/nub_year5_obstetrics_fetus_and_neonate_collection_quiz_fetus_and_neonate.json",
-    "questionsCount": 25
+    "questionsCount": 25,
+    "showAt": "/nub/year5/obstetrics/fetus-and-neonate"
   },
   {
     "id": "nub_year5_obstetrics_medical_disorders_in_pregnancy_collection_quiz_medical_disorders_in_pregnancy",
     "title": "Medical Disorders in Pregnancy",
     "path": "quizzes/nub_year5_obstetrics_medical_disorders_in_pregnancy_collection_quiz_medical_disorders_in_pregnancy.json",
-    "questionsCount": 52
+    "questionsCount": 52,
+    "showAt": "/nub/year5/obstetrics/medical-disorders-in-pregnancy"
   },
   {
     "id": "nub_year5_obstetrics_normal_and_abnormal_labor_and_delivery_collection_quiz_normal_and_abnormal_labor_and_delivery",
     "title": "NORMAL AND ABNORMAL LABOR AND DELIVERY",
     "path": "quizzes/nub_year5_obstetrics_normal_and_abnormal_labor_and_delivery_collection_quiz_normal_and_abnormal_labor_and_delivery.json",
-    "questionsCount": 129
+    "questionsCount": 129,
+    "showAt": "/nub/year5/obstetrics/normal-and-abnormal-labor-and-delivery"
   },
   {
     "id": "nub_year5_obstetrics_obstetric_injuries_collection_quiz_obstetric_injuries",
     "title": "OBSTETRIC INJURIES",
     "path": "quizzes/nub_year5_obstetrics_obstetric_injuries_collection_quiz_obstetric_injuries.json",
-    "questionsCount": 13
+    "questionsCount": 13,
+    "showAt": "/nub/year5/obstetrics/obstetric-injuries"
   },
   {
     "id": "nub_year5_obstetrics_revision_collection_quiz_round_mcqs",
     "title": "Round MCQs",
     "path": "quizzes/nub_year5_obstetrics_revision_collection_quiz_round_mcqs.json",
-    "questionsCount": 30
+    "questionsCount": 30,
+    "showAt": "/nub/year5/obstetrics/revision"
   },
   {
     "id": "nub_year5_obstetrics_revision_collection_quiz_vip",
     "title": "VIP",
     "path": "quizzes/nub_year5_obstetrics_revision_collection_quiz_vip.json",
-    "questionsCount": 309
+    "questionsCount": 309,
+    "showAt": "/nub/year5/obstetrics/revision"
   },
   {
     "id": "nub_year5_pediatrics_cardiology_collection_quiz_kaf",
     "title": "KAF",
     "path": "quizzes/nub_year5_pediatrics_cardiology_collection_quiz_kaf.json",
-    "questionsCount": 92
+    "questionsCount": 92,
+    "showAt": "/nub/year5/pediatrics/cardiology"
   },
   {
     "id": "nub_year5_pediatrics_cardiology_collection_quiz_pbl_of_cardiology",
     "title": "PBL of Cardiology",
     "path": "quizzes/nub_year5_pediatrics_cardiology_collection_quiz_pbl_of_cardiology.json",
-    "questionsCount": 16
+    "questionsCount": 16,
+    "showAt": "/nub/year5/pediatrics/cardiology"
   },
   {
     "id": "nub_year5_pediatrics_emergency_collection_quiz_kaf",
     "title": "KAF",
     "path": "quizzes/nub_year5_pediatrics_emergency_collection_quiz_kaf.json",
-    "questionsCount": 71
+    "questionsCount": 71,
+    "showAt": "/nub/year5/pediatrics/emergency"
   },
   {
     "id": "nub_year5_pediatrics_endocrine_collection_quiz_kaf",
     "title": "KAF",
     "path": "quizzes/nub_year5_pediatrics_endocrine_collection_quiz_kaf.json",
-    "questionsCount": 34
+    "questionsCount": 34,
+    "showAt": "/nub/year5/pediatrics/endocrine"
   },
   {
     "id": "nub_year5_pediatrics_endocrine_collection_quiz_pbl_of_endocrine",
     "title": "PBL of Endocrine",
     "path": "quizzes/nub_year5_pediatrics_endocrine_collection_quiz_pbl_of_endocrine.json",
-    "questionsCount": 20
+    "questionsCount": 20,
+    "showAt": "/nub/year5/pediatrics/endocrine"
   },
   {
     "id": "nub_year5_pediatrics_genetics_collection_quiz_kaf",
     "title": "KAF",
     "path": "quizzes/nub_year5_pediatrics_genetics_collection_quiz_kaf.json",
-    "questionsCount": 38
+    "questionsCount": 38,
+    "showAt": "/nub/year5/pediatrics/genetics"
   },
   {
     "id": "nub_year5_pediatrics_genetics_collection_quiz_pbl_of_genetics",
     "title": "PBL of Genetics",
     "path": "quizzes/nub_year5_pediatrics_genetics_collection_quiz_pbl_of_genetics.json",
-    "questionsCount": 12
+    "questionsCount": 12,
+    "showAt": "/nub/year5/pediatrics/genetics"
   },
   {
     "id": "nub_year5_pediatrics_git_collection_quiz_kaf",
     "title": "KAF",
     "path": "quizzes/nub_year5_pediatrics_git_collection_quiz_kaf.json",
-    "questionsCount": 60
+    "questionsCount": 60,
+    "showAt": "/nub/year5/pediatrics/git"
   },
   {
     "id": "nub_year5_pediatrics_git_collection_quiz_pbl_of_git",
     "title": "PBL of GIT",
     "path": "quizzes/nub_year5_pediatrics_git_collection_quiz_pbl_of_git.json",
-    "questionsCount": 12
+    "questionsCount": 12,
+    "showAt": "/nub/year5/pediatrics/git"
   },
   {
     "id": "nub_year5_pediatrics_growth_and_development_collection_quiz_kaf",
     "title": "KAF",
     "path": "quizzes/nub_year5_pediatrics_growth_and_development_collection_quiz_kaf.json",
-    "questionsCount": 54
+    "questionsCount": 54,
+    "showAt": "/nub/year5/pediatrics/growth-and-development"
   },
   {
     "id": "nub_year5_pediatrics_growth_and_development_collection_quiz_pbl_of_growth",
     "title": "PBL of Growth & Development",
     "path": "quizzes/nub_year5_pediatrics_growth_and_development_collection_quiz_pbl_of_growth.json",
-    "questionsCount": 8
+    "questionsCount": 8,
+    "showAt": "/nub/year5/pediatrics/growth-and-development"
   },
   {
     "id": "nub_year5_pediatrics_hematology_collection_quiz_kaf",
     "title": "KAF",
     "path": "quizzes/nub_year5_pediatrics_hematology_collection_quiz_kaf.json",
-    "questionsCount": 64
+    "questionsCount": 64,
+    "showAt": "/nub/year5/pediatrics/hematology"
   },
   {
     "id": "nub_year5_pediatrics_hematology_collection_quiz_pbl_of_hematology",
     "title": "PBL of Hematology",
     "path": "quizzes/nub_year5_pediatrics_hematology_collection_quiz_pbl_of_hematology.json",
-    "questionsCount": 35
+    "questionsCount": 35,
+    "showAt": "/nub/year5/pediatrics/hematology"
   },
   {
     "id": "nub_year5_pediatrics_hepatology_collection_quiz_kaf",
     "title": "KAF",
     "path": "quizzes/nub_year5_pediatrics_hepatology_collection_quiz_kaf.json",
-    "questionsCount": 48
+    "questionsCount": 48,
+    "showAt": "/nub/year5/pediatrics/hepatology"
   },
   {
     "id": "nub_year5_pediatrics_hepatology_collection_quiz_pbl_of_hepatology",
     "title": "PBL of Hepatology",
     "path": "quizzes/nub_year5_pediatrics_hepatology_collection_quiz_pbl_of_hepatology.json",
-    "questionsCount": 18
+    "questionsCount": 18,
+    "showAt": "/nub/year5/pediatrics/hepatology"
   },
   {
     "id": "nub_year5_pediatrics_infection_and_vaccination_collection_quiz_kaf",
     "title": "KAF",
     "path": "quizzes/nub_year5_pediatrics_infection_and_vaccination_collection_quiz_kaf.json",
-    "questionsCount": 88
+    "questionsCount": 88,
+    "showAt": "/nub/year5/pediatrics/infection-and-vaccination"
   },
   {
     "id": "nub_year5_pediatrics_infection_and_vaccination_collection_quiz_pbl_of_infection_and_vaccination",
     "title": "PBL of Infection and Vaccination",
     "path": "quizzes/nub_year5_pediatrics_infection_and_vaccination_collection_quiz_pbl_of_infection_and_vaccination.json",
-    "questionsCount": 16
+    "questionsCount": 16,
+    "showAt": "/nub/year5/pediatrics/infection-and-vaccination"
   },
   {
     "id": "nub_year5_pediatrics_neonatology_collection_quiz_kaf",
     "title": "KAF",
     "path": "quizzes/nub_year5_pediatrics_neonatology_collection_quiz_kaf.json",
-    "questionsCount": 100
+    "questionsCount": 100,
+    "showAt": "/nub/year5/pediatrics/neonatology"
   },
   {
     "id": "nub_year5_pediatrics_neonatology_collection_quiz_neonatology_bank",
     "title": "Neonatology Bank",
     "path": "quizzes/nub_year5_pediatrics_neonatology_collection_quiz_neonatology_bank.json",
-    "questionsCount": 2
+    "questionsCount": 2,
+    "showAt": "/nub/year5/pediatrics/neonatology"
   },
   {
     "id": "nub_year5_pediatrics_neonatology_collection_quiz_pbl_of_neonatology",
     "title": "PBL of Neonatology",
     "path": "quizzes/nub_year5_pediatrics_neonatology_collection_quiz_pbl_of_neonatology.json",
-    "questionsCount": 120
+    "questionsCount": 120,
+    "showAt": "/nub/year5/pediatrics/neonatology"
   },
   {
     "id": "nub_year5_pediatrics_nephrology_collection_quiz_kaf",
     "title": "KAF",
     "path": "quizzes/nub_year5_pediatrics_nephrology_collection_quiz_kaf.json",
-    "questionsCount": 49
+    "questionsCount": 49,
+    "showAt": "/nub/year5/pediatrics/nephrology"
   },
   {
     "id": "nub_year5_pediatrics_nephrology_collection_quiz_pbl_of_nephrology",
     "title": "PBL of Nephrology",
     "path": "quizzes/nub_year5_pediatrics_nephrology_collection_quiz_pbl_of_nephrology.json",
-    "questionsCount": 26
+    "questionsCount": 26,
+    "showAt": "/nub/year5/pediatrics/nephrology"
   },
   {
     "id": "nub_year5_pediatrics_neurology_collection_quiz_kaf",
     "title": "KAF",
     "path": "quizzes/nub_year5_pediatrics_neurology_collection_quiz_kaf.json",
-    "questionsCount": 79
+    "questionsCount": 79,
+    "showAt": "/nub/year5/pediatrics/neurology"
   },
   {
     "id": "nub_year5_pediatrics_neurology_collection_quiz_pbl_of_neurology",
     "title": "PBL of Neurology",
     "path": "quizzes/nub_year5_pediatrics_neurology_collection_quiz_pbl_of_neurology.json",
-    "questionsCount": 82
+    "questionsCount": 82,
+    "showAt": "/nub/year5/pediatrics/neurology"
   },
   {
     "id": "nub_year5_pediatrics_nutrition_collection_quiz_kaf",
     "title": "KAF",
     "path": "quizzes/nub_year5_pediatrics_nutrition_collection_quiz_kaf.json",
-    "questionsCount": 70
+    "questionsCount": 70,
+    "showAt": "/nub/year5/pediatrics/nutrition"
   },
   {
     "id": "nub_year5_pediatrics_nutrition_collection_quiz_pbl_of_nutrition",
     "title": "PBL of Nutrition",
     "path": "quizzes/nub_year5_pediatrics_nutrition_collection_quiz_pbl_of_nutrition.json",
-    "questionsCount": 14
+    "questionsCount": 14,
+    "showAt": "/nub/year5/pediatrics/nutrition"
   },
   {
     "id": "nub_year5_pediatrics_respiratory_collection_quiz_pbl_of_respiratory_and_allergy",
     "title": "PBL of Respiratory & Allergy",
     "path": "quizzes/nub_year5_pediatrics_respiratory_collection_quiz_pbl_of_respiratory_and_allergy.json",
-    "questionsCount": 84
+    "questionsCount": 84,
+    "showAt": "/nub/year5/pediatrics/respiratory"
   },
   {
     "id": "nub_year5_pediatrics_respiratory_collection_quiz_respiratory_and_allergy_kaf",
     "title": "Respiratory and allergy KAF",
     "path": "quizzes/nub_year5_pediatrics_respiratory_collection_quiz_respiratory_and_allergy_kaf.json",
-    "questionsCount": 69
+    "questionsCount": 69,
+    "showAt": "/nub/year5/pediatrics/respiratory"
   },
   {
     "id": "nub_year5_pediatrics_rheumatology_collection_quiz_kaf",
     "title": "KAF",
     "path": "quizzes/nub_year5_pediatrics_rheumatology_collection_quiz_kaf.json",
-    "questionsCount": 37
+    "questionsCount": 37,
+    "showAt": "/nub/year5/pediatrics/rheumatology"
   },
   {
     "id": "nub_year5_pediatrics_rheumatology_collection_quiz_pbl_of_rheumatology",
     "title": "PBL of Rheumatology",
     "path": "quizzes/nub_year5_pediatrics_rheumatology_collection_quiz_pbl_of_rheumatology.json",
-    "questionsCount": 16
+    "questionsCount": 16,
+    "showAt": "/nub/year5/pediatrics/rheumatology"
   },
   {
     "id": "nub_year5_public_health_adolescents_health_collection_quiz_adolescents_health",
     "title": "Adolescent's Health",
     "path": "quizzes/nub_year5_public_health_adolescents_health_collection_quiz_adolescents_health.json",
-    "questionsCount": 8
+    "questionsCount": 8,
+    "showAt": "/nub/year5/public-health/adolescents-health"
   },
   {
     "id": "nub_year5_public_health_arthropod_borne_diseases_collection_quiz_arthropod_borne_diseases",
     "title": "Arthropod-Borne Diseases Quiz",
     "path": "quizzes/nub_year5_public_health_arthropod_borne_diseases_collection_quiz_arthropod_borne_diseases.json",
-    "questionsCount": 14
+    "questionsCount": 14,
+    "showAt": "/nub/year5/public-health/arthropod-borne-diseases"
   },
   {
     "id": "nub_year5_public_health_contact_infections_collection_quiz_contact_infections",
     "title": "Contact Infections Quiz",
     "path": "quizzes/nub_year5_public_health_contact_infections_collection_quiz_contact_infections.json",
-    "questionsCount": 11
+    "questionsCount": 11,
+    "showAt": "/nub/year5/public-health/contact-infections"
   },
   {
     "id": "nub_year5_public_health_demography_collection_quiz_demography",
     "title": "Demography",
     "path": "quizzes/nub_year5_public_health_demography_collection_quiz_demography.json",
-    "questionsCount": 18
+    "questionsCount": 18,
+    "showAt": "/nub/year5/public-health/demography"
   },
   {
     "id": "nub_year5_public_health_elderly_health_collection_quiz_elderly_health",
     "title": "Elderly(Geriatric) Health",
     "path": "quizzes/nub_year5_public_health_elderly_health_collection_quiz_elderly_health.json",
-    "questionsCount": 7
+    "questionsCount": 7,
+    "showAt": "/nub/year5/public-health/elderly-health"
   },
   {
     "id": "nub_year5_public_health_enviromental_collection_quiz_enviromental",
     "title": "Environmental Health",
     "path": "quizzes/nub_year5_public_health_enviromental_collection_quiz_enviromental.json",
-    "questionsCount": 17
+    "questionsCount": 17,
+    "showAt": "/nub/year5/public-health/enviromental"
   },
   {
     "id": "nub_year5_public_health_food_borne_infections_collection_quiz_food_borne_infections",
     "title": "Food-Borne Infections Quiz",
     "path": "quizzes/nub_year5_public_health_food_borne_infections_collection_quiz_food_borne_infections.json",
-    "questionsCount": 12
+    "questionsCount": 12,
+    "showAt": "/nub/year5/public-health/food-borne-infections"
   },
   {
     "id": "nub_year5_public_health_general_epidemiology_collection_quiz_general_epidemiology",
     "title": "General Epidemiology ",
     "path": "quizzes/nub_year5_public_health_general_epidemiology_collection_quiz_general_epidemiology.json",
-    "questionsCount": 11
+    "questionsCount": 11,
+    "showAt": "/nub/year5/public-health/general-epidemiology"
   },
   {
     "id": "nub_year5_public_health_health_system_collection_quiz_health_system",
     "title": "Health System Quiz",
     "path": "quizzes/nub_year5_public_health_health_system_collection_quiz_health_system.json",
-    "questionsCount": 3
+    "questionsCount": 3,
+    "showAt": "/nub/year5/public-health/health-system"
   },
   {
     "id": "nub_year5_public_health_maternal_and_child_health_collection_quiz_maternal_and_child_health",
     "title": "Maternal and Child Health",
     "path": "quizzes/nub_year5_public_health_maternal_and_child_health_collection_quiz_maternal_and_child_health.json",
-    "questionsCount": 12
+    "questionsCount": 12,
+    "showAt": "/nub/year5/public-health/maternal-and-child-health"
   },
   {
     "id": "nub_year5_public_health_measurements_of_health_collection_quiz_measurements_of_health",
     "title": "Measurements of Health",
     "path": "quizzes/nub_year5_public_health_measurements_of_health_collection_quiz_measurements_of_health.json",
-    "questionsCount": 15
+    "questionsCount": 15,
+    "showAt": "/nub/year5/public-health/measurements-of-health"
   },
   {
     "id": "nub_year5_public_health_non_communicable_diseases_collection_quiz_non_communicable_diseases",
     "title": "Non-Communicable Diseases",
     "path": "quizzes/nub_year5_public_health_non_communicable_diseases_collection_quiz_non_communicable_diseases.json",
-    "questionsCount": 10
+    "questionsCount": 10,
+    "showAt": "/nub/year5/public-health/non-communicable-diseases"
   },
   {
     "id": "nub_year5_public_health_occupational_health_collection_quiz_occupational_health",
     "title": "Occupational Health ",
     "path": "quizzes/nub_year5_public_health_occupational_health_collection_quiz_occupational_health.json",
-    "questionsCount": 11
+    "questionsCount": 11,
+    "showAt": "/nub/year5/public-health/occupational-health"
   },
   {
     "id": "nub_year5_public_health_primary_health_care_collection_quiz_primary_health_care",
     "title": "Primary Health Care",
     "path": "quizzes/nub_year5_public_health_primary_health_care_collection_quiz_primary_health_care.json",
-    "questionsCount": 9
+    "questionsCount": 9,
+    "showAt": "/nub/year5/public-health/primary-health-care"
   },
   {
     "id": "nub_year5_public_health_school_health_collection_quiz_school_health",
     "title": "School Health",
     "path": "quizzes/nub_year5_public_health_school_health_collection_quiz_school_health.json",
-    "questionsCount": 9
+    "questionsCount": 9,
+    "showAt": "/nub/year5/public-health/school-health"
   }
 ]
