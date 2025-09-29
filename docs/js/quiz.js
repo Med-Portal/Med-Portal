@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const isCelebrationEnabled = localStorage.getItem(CELEBRATION_KEY) === 'true';
         if (userAnswers[currentQuestionIndex] === correctIndex && isCelebrationEnabled) {
             // 1. Play a light, popping sound effect
-            if (typeof Tone !== 'undefined') {
+            if (window.Tone) {
                 const synth = new Tone.Synth({
                     oscillator: { type: 'sine' },
                     envelope: { attack: 0.005, decay: 0.1, sustain: 0.3, release: 1 }
@@ -163,14 +163,13 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
 
             // 2. Launch the confetti
-            if (typeof confetti === 'function') {
+            if (window.confetti) {
                 confetti({
                     particleCount: 150,
                     spread: 80,
                     origin: { y: 0.6 }
                 });
             }
-        }
 
         // This part is untouched and works as before
         document.querySelectorAll('.option').forEach((opt, i) => {
@@ -181,6 +180,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (explanationText) {
             explanationContainer.innerHTML = `<strong>Explanation:</strong> ${explanationText}`;
             explanationContainer.style.display = 'block';
+        }
         }
     }
     // ## END SURGICAL MODIFICATION 4 ##
@@ -301,4 +301,4 @@ document.addEventListener('DOMContentLoaded', async function() {
         localStorage.removeItem(storageKey);
         window.location.reload();
     });
-}); 
+});
