@@ -53,15 +53,34 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         // ---------- Render quizzes from external index.json ----------
         try {
-            const quizIndex = await fetch('./quizzes/index.json');
-            if (quizIndex.ok) {
-                const quizFiles = await quizIndex.json();
+            const quizIndexResp = await fetch('./quizzes/index.json');
+            if (quizIndexResp.ok) {
+                const quizFiles = await quizIndexResp.json();
+
                 for (const quizFile of quizFiles) {
-                    const quizDataResp = await fetch(`./quizzes/${quizFile}`);
+                    // لو العنصر مجرد string
+                    let fileName, quizTitle, quizId;
+                    if (typeof quizFile === "string") {
+                        fileName = quizFile;
+                    } 
+                    // لو العنصر object
+                    else if (typeof quizFile === "object" && quizFile !== null) {
+                        fileName = quizFile.file;
+                        quizTitle = quizFile.title;
+                        quizId = quizFile.id;
+                    }
+
+                    if (!fileName) continue;
+
+                    const quizDataResp = await fetch(`./quizzes/${fileName}`);
                     if (quizDataResp.ok) {
                         const quizData = await quizDataResp.json();
                         toolbarContainer.appendChild(
-                            createResourceButton(quizData.title, quizData.link || `quiz.html?collection=${quizData.id}&path=${path}`, 'quiz')
+                            createResourceButton(
+                                quizTitle || quizData.title,
+                                quizData.link || `quiz.html?collection=${quizId || quizData.id}&path=${path}`,
+                                'quiz'
+                            )
                         );
                     }
                 }
