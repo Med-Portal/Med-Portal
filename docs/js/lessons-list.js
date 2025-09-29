@@ -2,13 +2,20 @@ document.addEventListener('DOMContentLoaded', async function() {
     const urlParams = new URLSearchParams(window.location.search);
     const selectedUniId = localStorage.getItem('selectedUni');
     const path = urlParams.get('path') || `/${selectedUniId}`;
-    const pathSegments = path.split('/').filter(Boolean);
+    
+    console.log('=== DIAGNOSTIC INFO ===');
+    console.log('Current path:', path);
+    console.log('Selected Uni:', selectedUniId);
 
     const pageTitleEl = document.getElementById('page-title');
     const cardContainer = document.getElementById('card-container');
     const siteTitleEl = document.getElementById('site-title');
     const toolbarContainer = document.getElementById('toolbar-container');
     const navContainer = document.getElementById('nav-container');
+
+    // Check if containers exist
+    console.log('Toolbar container exists:', !!toolbarContainer);
+    console.log('Card container exists:', !!cardContainer);
 
     navContainer.innerHTML = '<a href="javascript:history.back()" class="back-link">← Back</a>';
 
@@ -18,17 +25,20 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     try {
-        // Load database.json for lessons + flashcards
         const response = await fetch('./database.json');
         if (!response.ok) throw new Error("Database file not found.");
         const data = await response.json();
         const university = data.tree[selectedUniId];
         siteTitleEl.textContent = `${university.name} Med Portal`;
 
+        const pathSegments = path.split('/').filter(Boolean);
         let currentNode = university;
         for (const segment of pathSegments.slice(1)) {
             currentNode = currentNode.children[segment];
         }
+
+        console.log('Current node:', currentNode.label || currentNode.name);
+        console.log('Node has resources:', !!currentNode.resources);
 
         if (pageTitleEl) {
             if (pathSegments.length <= 1) {
@@ -42,8 +52,9 @@ document.addEventListener('DOMContentLoaded', async function() {
         cardContainer.innerHTML = '';
         toolbarContainer.innerHTML = '';
 
-        // Render flashcards from database.json
+        // Flashcards
         if (currentNode.resources && currentNode.resources.flashcardDecks) {
+            console.log('Found flashcards:', currentNode.resources.flashcardDecks.length);
             currentNode.resources.flashcardDecks.forEach(deck => {
                 toolbarContainer.appendChild(
                     createResourceButton(deck.title, `flashcards.html?collection=${deck.id}&path=${path}`, 'flashcards')
@@ -51,31 +62,36 @@ document.addEventListener('DOMContentLoaded', async function() {
             });
         }
 
-        // Render quizzes automatically based on current path
+        // QUIZZES - DIAGNOSTIC VERSION
+        console.log('Attempting to load quizzes...');
         try {
             const quizIndexResp = await fetch('./quizzes/index.json');
+            console.log('Quiz index response status:', quizIndexResp.status);
+            
             if (quizIndexResp.ok) {
                 const allQuizzes = await quizIndexResp.json();
+                console.log('Total quizzes in index:', allQuizzes.length);
+                console.log('First quiz:', allQuizzes[0]);
                 
-                // Filter quizzes that should appear at this path
-                const pathQuizzes = allQuizzes.filter(quiz => {
-                    if (!quiz.showAt) return false;
-                    // Match exact path or parent path
-                    return path === quiz.showAt || path.startsWith(quiz.showAt + '/');
-                });
-
-                pathQuizzes.forEach(quiz => {
-                    toolbarContainer.appendChild(
-                        createResourceButton(
-                            quiz.title,
-                            `quiz.html?collection=${quiz.id}&file=${quiz.path}&path=${path}`,
-                            'quiz'
-                        )
+                // Show ALL quizzes for debugging (remove filter)
+                console.log('Creating buttons for all quizzes...');
+                allQuizzes.forEach((quiz, index) => {
+                    console.log(`Quiz ${index}:`, quiz.title, quiz.id);
+                    const button = createResourceButton(
+                        quiz.title,
+                        `quiz.html?collection=${quiz.id}&path=${path}`,
+                        'quiz'
                     );
+                    toolbarContainer.appendChild(button);
+                    console.log('Button created and appended');
                 });
+                
+                console.log('Total buttons created:', allQuizzes.length);
+            } else {
+                console.error('Quiz index not OK:', quizIndexResp.status);
             }
         } catch (quizErr) {
-            console.warn('Quizzes index could not be loaded:', quizErr);
+            console.error('Quiz loading error:', quizErr);
         }
 
         // Render children lessons
@@ -83,17 +99,17 @@ document.addEventListener('DOMContentLoaded', async function() {
             for (const id in currentNode.children) {
                 const childNode = currentNode.children[id];
                 const newPath = `${path}/${id}`.replace(/\/\//g, '/');
-
                 const targetUrl = childNode.isBranch
                     ? `lessons-list.html?path=${newPath}`
                     : `lesson.html?path=${newPath}`;
-
                 const card = createCard(childNode.label, targetUrl, childNode.summary);
                 cardContainer.appendChild(card);
             }
         }
+        
+        console.log('=== END DIAGNOSTIC ===');
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Main error:', error);
         if (pageTitleEl) pageTitleEl.textContent = `Error: ${error.message}`;
     }
 });
