@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     try {
+        // Load database.json for lessons + flashcards
         const response = await fetch('./database.json');
         if (!response.ok) throw new Error("Database file not found.");
         const data = await response.json();
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         cardContainer.innerHTML = '';
         toolbarContainer.innerHTML = '';
 
-        // Render flashcards
+        // Render flashcards from database.json
         if (currentNode.resources && currentNode.resources.flashcardDecks) {
             currentNode.resources.flashcardDecks.forEach(deck => {
                 toolbarContainer.appendChild(
@@ -50,14 +51,20 @@ document.addEventListener('DOMContentLoaded', async function() {
             });
         }
 
-        // Render quizzes - FIXED VERSION
+        // Render quizzes automatically based on current path
         try {
             const quizIndexResp = await fetch('./quizzes/index.json');
             if (quizIndexResp.ok) {
-                const quizzesIndex = await quizIndexResp.json();
+                const allQuizzes = await quizIndexResp.json();
                 
-                quizzesIndex.forEach(quiz => {
-                    // Use quiz object properties directly - no need for additional fetch
+                // Filter quizzes that should appear at this path
+                const pathQuizzes = allQuizzes.filter(quiz => {
+                    if (!quiz.showAt) return false;
+                    // Match exact path or parent path
+                    return path === quiz.showAt || path.startsWith(quiz.showAt + '/');
+                });
+
+                pathQuizzes.forEach(quiz => {
                     toolbarContainer.appendChild(
                         createResourceButton(
                             quiz.title,
@@ -68,7 +75,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 });
             }
         } catch (quizErr) {
-            console.warn('Quizzes index not found:', quizErr);
+            console.warn('Quizzes index could not be loaded:', quizErr);
         }
 
         // Render children lessons
@@ -76,9 +83,11 @@ document.addEventListener('DOMContentLoaded', async function() {
             for (const id in currentNode.children) {
                 const childNode = currentNode.children[id];
                 const newPath = `${path}/${id}`.replace(/\/\//g, '/');
+
                 const targetUrl = childNode.isBranch
                     ? `lessons-list.html?path=${newPath}`
                     : `lesson.html?path=${newPath}`;
+
                 const card = createCard(childNode.label, targetUrl, childNode.summary);
                 cardContainer.appendChild(card);
             }
