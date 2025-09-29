@@ -9,7 +9,7 @@ function formatLabel(name) {
 // Main function to generate quizzes only
 async function generateQuizzes() {
     const universitiesPath = 'content/universities';
-    const quizzesOutputDir = path.join('docs', 'quizzes');
+    const quizzesOutputDir = path.join('docs', 'Quizzes');
     await fs.mkdir(quizzesOutputDir, { recursive: true });
 
     // Array to collect quiz metadata for the index
@@ -33,7 +33,7 @@ async function generateQuizzes() {
                         quizzesIndex.push({
                             id: baseName,
                             title: quizObject.title || formatLabel(baseName),
-                            path: `quizzes/${baseName}.json`,
+                            path: `Quizzes/${baseName}.json`,
                             questionsCount: Array.isArray(quizObject.questions) ? quizObject.questions.length : 0
                         });
                     } catch (e) {
@@ -56,8 +56,8 @@ async function generateQuizzes() {
     // Write the quizzes index file
     const indexPath = path.join(quizzesOutputDir, 'index.json');
     await fs.writeFile(indexPath, JSON.stringify(quizzesIndex, null, 2));
-    console.log('All quizzes generated in docs/quizzes/');
-    console.log('Quizzes index generated at docs/quizzes/index.json');
+    console.log('All quizzes generated in docs/Quizzes/');
+    console.log('Quizzes index generated at docs/Quizzes/index.json');
 }
 
-generateQuizzes(); 
+generateQuizzes();
