@@ -50,12 +50,21 @@ document.addEventListener('DOMContentLoaded', async function() {
             currentNode = currentNode.children[segment];
         }
 
+
         if (isLessonQuiz) {
             quizData = currentNode.resources?.lessonQuiz;
             storageKey = `quiz-progress-${path}`;
         } else if (collectionId) {
             const collectionQuiz = currentNode.resources?.collectionQuizzes?.find(q => q.id === collectionId);
-            quizData = collectionQuiz?.quizData;
+            if (collectionQuiz?.path) {
+                // النظام الجديد: تحميل الكويز من ملف منفصل
+                const quizResp = await fetch(collectionQuiz.path);
+                if (!quizResp.ok) throw new Error('Failed to load quiz file.');
+                quizData = await quizResp.json();
+            } else {
+                // دعم النظام القديم (في حال لم يكن هناك path)
+                quizData = collectionQuiz?.quizData;
+            }
             storageKey = `quiz-progress-${path}-${collectionId}`;
         }
 
