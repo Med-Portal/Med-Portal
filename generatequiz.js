@@ -1,31 +1,27 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-// Helper to format names as a fallback
 function formatLabel(name) {
     return name.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 }
 
-// Helper to create a unique ID from relative path
 function createIdFromPath(baseDir, filePath) {
-    const relativePath = path.relative(baseDir, filePath); // e.g., cairo/medicine/_collection_quiz/quiz1.json
+    const relativePath = path.relative(baseDir, filePath);
     return relativePath
-        .replace(/\\/g, '/') // normalize slashes for Windows
-        .replace(/\.json$/, '') // remove extension
-        .replace(/[^a-zA-Z0-9]+/g, '_') // replace non-alphanumerics
+        .replace(/\\/g, '/')
+        .replace(/\.json$/, '')
+        .replace(/[^a-zA-Z0-9]+/g, '_')
         .toLowerCase();
 }
 
-// Main function to generate quizzes only
 async function generateQuizzes() {
     const universitiesPath = 'content/universities';
-    const quizzesOutputDir = path.join('docs', 'quizzes'); // <-- lowercase folder
+    const quizzesOutputDir = path.join('docs', 'quizzes');
     await fs.mkdir(quizzesOutputDir, { recursive: true });
 
-    // Array to collect quiz metadata for the index
     const quizzesIndex = [];
 
-    async function scanForQuizzes(dirPath) {
+    async function scanForQuizzes(dirPath, currentPath = '') {
         const collectionQuizPath = path.join(dirPath, '_collection_quiz');
         try {
             await fs.access(collectionQuizPath);
@@ -37,18 +33,16 @@ async function generateQuizzes() {
                         const quizContent = await fs.readFile(jsonFilePath, 'utf8');
                         const quizObject = JSON.parse(quizContent);
 
-                        // Generate ID from relative path
                         const quizId = createIdFromPath(universitiesPath, jsonFilePath);
-
                         const quizOutputFile = path.join(quizzesOutputDir, `${quizId}.json`);
                         await fs.writeFile(quizOutputFile, JSON.stringify(quizObject, null, 2));
 
-                        // Add quiz metadata to index
                         quizzesIndex.push({
                             id: quizId,
                             title: quizObject.title || formatLabel(path.basename(file, '.json')),
-                            path: `quizzes/${quizId}.json`, // <-- lowercase in path
-                            questionsCount: Array.isArray(quizObject.questions) ? quizObject.questions.length : 0
+                            path: `quizzes/${quizId}.json`,
+                            questionsCount: Array.isArray(quizObject.questions) ? quizObject.questions.length : 0,
+                            showAt: currentPath // This is the key addition
                         });
                     } catch (e) {
                         console.error(`Error processing collection quiz ${file}:`, e);
@@ -56,18 +50,18 @@ async function generateQuizzes() {
                 }
             }
         } catch {}
-        // Recursively scan children
+
         const entries = await fs.readdir(dirPath, { withFileTypes: true });
         for (const entry of entries) {
             if (entry.isDirectory() && !entry.name.startsWith('_') && !entry.name.startsWith('.')) {
-                await scanForQuizzes(path.join(dirPath, entry.name));
+                const newPath = currentPath ? `${currentPath}/${entry.name}` : `/${entry.name}`;
+                await scanForQuizzes(path.join(dirPath, entry.name), newPath);
             }
         }
     }
 
     await scanForQuizzes(universitiesPath);
 
-    // Write the quizzes index file
     const indexPath = path.join(quizzesOutputDir, 'index.json');
     await fs.writeFile(indexPath, JSON.stringify(quizzesIndex, null, 2));
     console.log('All quizzes generated in docs/quizzes/');
