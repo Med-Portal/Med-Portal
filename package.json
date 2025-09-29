@@ -6,7 +6,6 @@
     "gray-matter": "^4.0.3"
   },
   "scripts": {
-    "build": "node generatequiz.js && node generateIndex.js",
-    "generate:quizzes": "node generatequiz.js"
+    "build": "node generatequiz.js && node generateIndex.js"
   }
 }
