@@ -13,12 +13,12 @@ document.addEventListener('DOMContentLoaded', async function() {
     navContainer.innerHTML = '<a href="javascript:history.back()" class="back-link">← Back</a>';
 
     if (!selectedUniId) {
-        // This check is important, but there is no pageTitleEl in index.html
         if (pageTitleEl) pageTitleEl.textContent = 'No University Selected.';
         return;
     }
 
     try {
+        // ---------- Load database.json for lessons + flashcards ----------
         const response = await fetch('./database.json');
         if (!response.ok) throw new Error("Database file not found.");
         const data = await response.json();
@@ -42,53 +42,66 @@ document.addEventListener('DOMContentLoaded', async function() {
         cardContainer.innerHTML = '';
         toolbarContainer.innerHTML = '';
 
-        // Logic now passes the correct 'type' to createResourceButton
-        if (currentNode.resources) {
-            if (currentNode.resources.collectionQuizzes) {
-                currentNode.resources.collectionQuizzes.forEach(quiz => {
-                    toolbarContainer.appendChild(createResourceButton(quiz.title, `quiz.html?collection=${quiz.id}&path=${path}`, 'quiz'));
-                });
-            }
-            if (currentNode.resources.flashcardDecks) {
-                currentNode.resources.flashcardDecks.forEach(deck => {
-                    toolbarContainer.appendChild(createResourceButton(deck.title, `flashcards.html?collection=${deck.id}&path=${path}`, 'flashcards'));
-                });
-            }
+        // ---------- Render flashcards from database.json ----------
+        if (currentNode.resources && currentNode.resources.flashcardDecks) {
+            currentNode.resources.flashcardDecks.forEach(deck => {
+                toolbarContainer.appendChild(
+                    createResourceButton(deck.title, `flashcards.html?collection=${deck.id}&path=${path}`, 'flashcards')
+                );
+            });
         }
 
+        // ---------- Render quizzes from external index.json ----------
+        try {
+            const quizIndex = await fetch('./quizzes/index.json');
+            if (quizIndex.ok) {
+                const quizFiles = await quizIndex.json();
+                for (const quizFile of quizFiles) {
+                    const quizDataResp = await fetch(`./quizzes/${quizFile}`);
+                    if (quizDataResp.ok) {
+                        const quizData = await quizDataResp.json();
+                        toolbarContainer.appendChild(
+                            createResourceButton(quizData.title, quizData.link || `quiz.html?collection=${quizData.id}&path=${path}`, 'quiz')
+                        );
+                    }
+                }
+            }
+        } catch (quizErr) {
+            console.warn('Quizzes index not found:', quizErr);
+        }
+
+        // ---------- Render children lessons ----------
         if (currentNode.children) {
             for (const id in currentNode.children) {
                 const childNode = currentNode.children[id];
                 const newPath = `${path}/${id}`.replace(/\/\//g, '/');
-                
+
                 const targetUrl = childNode.isBranch
                     ? `lessons-list.html?path=${newPath}`
                     : `lesson.html?path=${newPath}`;
-                
+
                 const card = createCard(childNode.label, targetUrl, childNode.summary);
                 cardContainer.appendChild(card);
             }
         }
     } catch (error) {
         console.error('Error:', error);
-        if(pageTitleEl) pageTitleEl.textContent = `Error: ${error.message}`;
+        if (pageTitleEl) pageTitleEl.textContent = `Error: ${error.message}`;
     }
 });
 
-// This function now assigns the correct class for lessons
+// ---------- UI Helpers ----------
 function createCard(title, url, description) {
     const cardLink = document.createElement('a');
     cardLink.href = url;
-    cardLink.className = 'card card--lesson'; // Assigns the lesson identity
+    cardLink.className = 'card card--lesson';
     cardLink.innerHTML = `<div class="card-content"><h2>${title}</h2></div>`;
     return cardLink;
 }
 
-// This function now assigns a class based on the resource type
 function createResourceButton(text, url, type) {
     const button = document.createElement('a');
     button.href = url;
-    // Assigns a dynamic class like 'card--quiz' or 'card--flashcards'
     button.className = `card card--${type}`;
     button.innerHTML = `<h2>${text}</h2>`;
     return button;
