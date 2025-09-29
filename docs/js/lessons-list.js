@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     try {
-        // ---------- Load database.json for lessons + flashcards ----------
         const response = await fetch('./database.json');
         if (!response.ok) throw new Error("Database file not found.");
         const data = await response.json();
@@ -42,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         cardContainer.innerHTML = '';
         toolbarContainer.innerHTML = '';
 
-        // ---------- Render flashcards from database.json ----------
+        // Render flashcards
         if (currentNode.resources && currentNode.resources.flashcardDecks) {
             currentNode.resources.flashcardDecks.forEach(deck => {
                 toolbarContainer.appendChild(
@@ -51,54 +50,35 @@ document.addEventListener('DOMContentLoaded', async function() {
             });
         }
 
-        // ---------- Render quizzes from external index.json ----------
+        // Render quizzes - FIXED VERSION
         try {
             const quizIndexResp = await fetch('./quizzes/index.json');
             if (quizIndexResp.ok) {
-                const quizFiles = await quizIndexResp.json();
-
-                for (const quizFile of quizFiles) {
-                    // لو العنصر مجرد string
-                    let fileName, quizTitle, quizId;
-                    if (typeof quizFile === "string") {
-                        fileName = quizFile;
-                    } 
-                    // لو العنصر object
-                    else if (typeof quizFile === "object" && quizFile !== null) {
-                        fileName = quizFile.file;
-                        quizTitle = quizFile.title;
-                        quizId = quizFile.id;
-                    }
-
-                    if (!fileName) continue;
-
-                    const quizDataResp = await fetch(`./quizzes/${fileName}`);
-                    if (quizDataResp.ok) {
-                        const quizData = await quizDataResp.json();
-                        toolbarContainer.appendChild(
-                            createResourceButton(
-                                quizTitle || quizData.title,
-                                quizData.link || `quiz.html?collection=${quizId || quizData.id}&path=${path}`,
-                                'quiz'
-                            )
-                        );
-                    }
-                }
+                const quizzesIndex = await quizIndexResp.json();
+                
+                quizzesIndex.forEach(quiz => {
+                    // Use quiz object properties directly - no need for additional fetch
+                    toolbarContainer.appendChild(
+                        createResourceButton(
+                            quiz.title,
+                            `quiz.html?collection=${quiz.id}&file=${quiz.path}&path=${path}`,
+                            'quiz'
+                        )
+                    );
+                });
             }
         } catch (quizErr) {
             console.warn('Quizzes index not found:', quizErr);
         }
 
-        // ---------- Render children lessons ----------
+        // Render children lessons
         if (currentNode.children) {
             for (const id in currentNode.children) {
                 const childNode = currentNode.children[id];
                 const newPath = `${path}/${id}`.replace(/\/\//g, '/');
-
                 const targetUrl = childNode.isBranch
                     ? `lessons-list.html?path=${newPath}`
                     : `lesson.html?path=${newPath}`;
-
                 const card = createCard(childNode.label, targetUrl, childNode.summary);
                 cardContainer.appendChild(card);
             }
@@ -109,7 +89,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 });
 
-// ---------- UI Helpers ----------
 function createCard(title, url, description) {
     const cardLink = document.createElement('a');
     cardLink.href = url;
