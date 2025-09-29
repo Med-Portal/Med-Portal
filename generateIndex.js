@@ -2,6 +2,9 @@ import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
 
+const quizzesOutputDir = path.join('docs', 'quizzes'); // سنبقي على هذا المتغير لإنشاء المسار الصحيح
+
+
 // Helper to format names as a fallback
 function formatLabel(name) {
     return name.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
@@ -53,6 +56,9 @@ async function scanDirectory(dirPath, isUniversity = false) {
                     const quizObject = JSON.parse(quizContent);
                     const title = quizObject.title || formatLabel(baseName);
                     collectionQuizzes.push({ id: baseName, title: title, quizData: quizObject });
+                    // لن نقوم بنسخ الملف هنا، بل سنقوم فقط بتسجيل المسار المتوقع
+                    // سيتولى `generatequiz.js` عملية النسخ الفعلية
+                    collectionQuizzes.push({ id: baseName, title: title, path: `./quizzes/${baseName}.json` });
                 } catch (e) { console.error(`Error processing collection quiz ${file}:`, e); }
             }
         }
@@ -118,6 +124,9 @@ async function main() {
     const universitiesPath = 'content/universities';
     const outputPath = 'docs/database.json';
 
+    // لم يعد هذا السكربت مسؤولاً عن إنشاء مجلد الاختبارات
+    // await fs.mkdir(quizzesOutputDir, { recursive: true });
+
     const database = {
         generatedAt: new Date().toISOString(),
         tree: {}
@@ -129,14 +138,3 @@ async function main() {
             if (uniDir.isDirectory()) {
                 const uniPath = path.join(universitiesPath, uniDir.name);
                 database.tree[uniDir.name] = await scanDirectory(uniPath, true);
-            }
-        }
-        await fs.writeFile(outputPath, JSON.stringify(database, null, 2));
-        console.log(`Database generated successfully at ${outputPath}`);
-    } catch (error) {
-        console.error("Error generating database:", error);
-        process.exit(1);
-    }
-}
-
-main();
