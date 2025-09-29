@@ -60,4 +60,4 @@ async function generateQuizzes() {
     console.log('Quizzes index generated at docs/quizzes/index.json');
 }
 
-generateQuizzes();
+generateQuizzes(); 
