@@ -301,4 +301,4 @@ document.addEventListener('DOMContentLoaded', async function() {
         localStorage.removeItem(storageKey);
         window.location.reload();
     });
-});
+}); 
