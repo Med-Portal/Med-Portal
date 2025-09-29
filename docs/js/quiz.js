@@ -40,31 +40,39 @@ document.addEventListener('DOMContentLoaded', async function() {
     try {
         if (!selectedUniId || !path) throw new Error("University or Path not specified.");
 
-        const response = await fetch('./database.json');
-        const data = await response.json();
-        let currentNode = data.tree[selectedUniId];
-        siteTitleEl.textContent = `${currentNode.name} Med Portal`;
-
-        const pathSegments = path.split('/').filter(Boolean).slice(1);
-        for (const segment of pathSegments) {
-            currentNode = currentNode.children[segment];
+        // Set site title using university name from database.json.
+        // This is a separate, quick fetch that doesn't involve quiz data.
+        const dbResponse = await fetch('./database.json');
+        const dbData = await dbResponse.json();
+        const universityNode = dbData.tree[selectedUniId];
+        if (universityNode) {
+            siteTitleEl.textContent = `${universityNode.name} Med Portal`;
         }
-
-
-        if (isLessonQuiz) {
-            quizData = currentNode.resources?.lessonQuiz;
-            storageKey = `quiz-progress-${path}`;
-        } else if (collectionId) {
-            const collectionQuiz = currentNode.resources?.collectionQuizzes?.find(q => q.id === collectionId);
-            if (collectionQuiz?.path) {
-                // النظام الجديد: تحميل الكويز من ملف منفصل
-                const quizResp = await fetch(collectionQuiz.path);
-                if (!quizResp.ok) throw new Error('Failed to load quiz file.');
-                quizData = await quizResp.json();
-            } else {
-                // دعم النظام القديم (في حال لم يكن هناك path)
-                quizData = collectionQuiz?.quizData;
+        
+        if (isLessonQuiz) { 
+            // For quizzes embedded within a lesson (loaded from database.json)
+            let lessonNode = dbData.tree[selectedUniId];
+            const pathSegments = path.split('/').filter(Boolean).slice(1);
+            for (const segment of pathSegments) {
+                if (!lessonNode.children?.[segment]) throw new Error("Lesson path not found in database.");
+                lessonNode = lessonNode.children[segment];
             }
+            quizData = lessonNode.resources?.lessonQuiz;
+            storageKey = `quiz-progress-${path}`;
+
+        } else if (collectionId) { 
+            // For standalone collection quizzes (loaded on-demand)
+            // 1. Fetch the index to find the quiz path.
+            const quizIndexResp = await fetch('quizzes/index.json');
+            if (!quizIndexResp.ok) throw new Error('Failed to load quiz index.');
+            const quizzesIndex = await quizIndexResp.json();
+            const quizInfo = quizzesIndex.find(q => q.id === collectionId);
+            if (!quizInfo?.path) throw new Error(`Quiz with ID "${collectionId}" not found in quiz index.`);
+            
+            // 2. Fetch the specific quiz file using the path from the index.
+            const quizResp = await fetch(quizInfo.path);
+            if (!quizResp.ok) throw new Error(`Failed to load quiz file: ${quizInfo.path}`);
+            quizData = await quizResp.json();
             storageKey = `quiz-progress-${path}-${collectionId}`;
         }
 
