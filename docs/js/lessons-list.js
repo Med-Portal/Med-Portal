@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     try {
-        // Load database.json for lessons + flashcards
         const response = await fetch('./database.json');
         if (!response.ok) throw new Error("Database file not found.");
         const data = await response.json();
@@ -42,55 +41,57 @@ document.addEventListener('DOMContentLoaded', async function() {
         cardContainer.innerHTML = '';
         toolbarContainer.innerHTML = '';
 
-        // Render flashcards from database.json
-        if (currentNode.resources && currentNode.resources.flashcardDecks) {
-            currentNode.resources.flashcardDecks.forEach(deck => {
-                toolbarContainer.appendChild(
-                    createResourceButton(deck.title, `flashcards.html?collection=${deck.id}&path=${path}`, 'flashcards')
-                );
-            });
-        }
-
-        // Render quizzes from external index.json (إصلاح هنا: استخدم objects مباشرة بدون fetch إضافي)
-        try {
-            const quizIndexResp = await fetch('./quizzes/index.json');
-            if (quizIndexResp.ok) {
-                const quizzesIndex = await quizIndexResp.json();
-                quizzesIndex.forEach(quiz => {  // quiz هو object مثل {id, title, path}
-                    toolbarContainer.appendChild(
-                        createResourceButton(
-                            quiz.title,  // استخدم title من index.json
-                            `quiz.html?collection=${quiz.id}&file=${quiz.path}&path=${path}`,  // مرر path كـ file
-                            'quiz'
-                        )
-                    );
+        if (currentNode.resources) {
+            if (currentNode.resources.collectionQuizzes) {
+                currentNode.resources.collectionQuizzes.forEach(quiz => {
+                    toolbarContainer.appendChild(createResourceButton(quiz.title, `quiz.html?collection=${quiz.id}&path=${path}`, 'quiz'));
                 });
             }
-        } catch (quizErr) {
-            console.warn('Quizzes index not found:', quizErr);
+            if (currentNode.resources.flashcardDecks) {
+                currentNode.resources.flashcardDecks.forEach(deck => {
+                    toolbarContainer.appendChild(createResourceButton(deck.title, `flashcards.html?collection=${deck.id}&path=${path}`, 'flashcards'));
+                });
+            }
         }
 
-        // Render children lessons
         if (currentNode.children) {
             for (const id in currentNode.children) {
                 const childNode = currentNode.children[id];
                 const newPath = `${path}/${id}`.replace(/\/\//g, '/');
+                
+                // ---  بداية التعديل ---
+                
+                let targetUrl;
 
-                const targetUrl = childNode.isBranch
-                    ? `lessons-list.html?path=${newPath}`
-                    : `lesson.html?path=${newPath}`;
-
+                // 1. التحقق من وجود رابط جوجل دك
+                if (childNode.googleDocUrl) {
+                    // إذا كان الرابط موجودًا، اجعل الوجهة هي رابط جوجل دك
+                    targetUrl = childNode.googleDocUrl;
+                } else {
+                    // إذا لم يكن هناك رابط، استخدم السلوك القديم
+                    targetUrl = childNode.isBranch
+                        ? `lessons-list.html?path=${newPath}`
+                        : `lesson.html?path=${newPath}`;
+                }
+                
                 const card = createCard(childNode.label, targetUrl, childNode.summary);
+
+                // 2. إذا كان الرابط هو رابط جوجل، اجعل الزر يفتح في تبويب جديد
+                if (childNode.googleDocUrl) {
+                    card.target = '_blank';
+                }
+                
+                // ---  نهاية التعديل ---
+
                 cardContainer.appendChild(card);
             }
         }
     } catch (error) {
         console.error('Error:', error);
-        if (pageTitleEl) pageTitleEl.textContent = `Error: ${error.message}`;
+        if(pageTitleEl) pageTitleEl.textContent = `Error: ${error.message}`;
     }
 });
 
-// UI Helpers (كما هي)
 function createCard(title, url, description) {
     const cardLink = document.createElement('a');
     cardLink.href = url;
